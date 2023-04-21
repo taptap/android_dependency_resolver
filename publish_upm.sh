@@ -24,14 +24,17 @@ publishUPM() {
     
     git remote rm "$1"
     
-    publish2Release=false
-    if [ $publish2Release=true ]; then
-        echo "start push $1 to git@github.com:xd-platform/AndroidDependencyResolver.git"
-        git remote add "$1" git@github.com:xd-platform/AndroidDependencyResolver.git
-    else
-        echo "start push $1 to git@github.com:luckisnow/AndroidDependencyResolver.git"  
-        git remote add "$1" https://$token@github.com/luckisnow/AndroidDependencyResolver.git
-    fi;
+    # publish2Release=false
+    # if [ $publish2Release=true ]; then
+    #     echo "start push $1 to git@github.com:xd-platform/AndroidDependencyResolver.git"
+    #     git remote add "$1" git@github.com:xd-platform/AndroidDependencyResolver.git
+    # else
+    #     echo "start push $1 to git@github.com:luckisnow/AndroidDependencyResolver.git"  
+    #     git remote add "$1" https://$token@github.com/luckisnow/AndroidDependencyResolver.git
+    # fi;
+
+    echo "start push $1 to git@github.com:luckisnow/AndroidDependencyResolver.git"  
+    git remote add "$1" https://$token@github.com/luckisnow/AndroidDependencyResolver.git
     
     git checkout github_upm --force
     
