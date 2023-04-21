@@ -24,6 +24,7 @@ publishUPM() {
     
     git remote rm "$1"
     
+    publish2Release=false
     if [ $publish2Release=true ]; then
         echo "start push $1 to git@github.com:xd-platform/AndroidDependencyResolver.git"
         git remote add "$1" git@github.com:xd-platform/AndroidDependencyResolver.git
