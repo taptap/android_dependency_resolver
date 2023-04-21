@@ -34,7 +34,7 @@ publishUPM() {
     # fi;
 
     echo "start push $1 to git@github.com:luckisnow/AndroidDependencyResolver.git"  
-    git remote add "$1" git@github.com:luckisnow/AndroidDependencyResolver.git
+    git remote add "$1" https://$token@github.com:luckisnow/AndroidDependencyResolver.git
     
     git checkout github_upm --force
     
