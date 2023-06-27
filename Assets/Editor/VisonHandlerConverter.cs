@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace TapTap.Internal.Editor
 {
-    public class VisonHandlerConverter
+    public class VisonHandlerConverter : EditorWindow
     {
         private const string EDM4U_LABEL = "gvh";
         private const string EDM4U_VERSION_LABEL = "gvh_version-";
@@ -15,14 +15,38 @@ namespace TapTap.Internal.Editor
         private const string EDM4U_MANIFEST_LABEL = "gvh_manifest";
         private const string EDM4U_EDITOR_DLL_LABEL = "gvh-targets-editor";
 
-        [MenuItem("TapTap/VersionHandler/Refresh")]
-        public static void Refresh()
+        private string pluginName;
+        private string rootFolder;
+        private string version;
+        [MenuItem("TapTap/VersionHandler/Convert")]
+        public static void Convert()
         {
-            string pluginName = "TapTap-Android-Dependency-Resolver";
-            string rootFolder = "Assets/TapTap/AndroidDependencyResolver";
-            string version = "100.0.9";
-            ConvertToVersionHandler(pluginName, rootFolder, version);
+            // Get existing open window or if none, make a new one:
+            var window = (VisonHandlerConverter)EditorWindow.GetWindow(typeof(VisonHandlerConverter), false, "Version Handler Converter");
+            window.Show();
         }
+        
+        void OnGUI()
+        {
+            GUILayout.Label("Plugin Info", EditorStyles.boldLabel);
+            pluginName = EditorGUILayout.TextField("Plugin Name: ", pluginName ?? "");
+            version = EditorGUILayout.TextField("Plugin Version: ", version ?? "");
+            
+            GUILayout.BeginHorizontal();
+            GUILayout.Label($"Plugin Root Folder: {AbsolutePath2UnityPath(rootFolder)}");
+            if (GUILayout.Button("Choose"))
+            {
+                var path = EditorUtility.OpenFolderPanel("Plugin Root Folder",UnityPath2AbsolutePath(rootFolder) ?? "", "");
+                rootFolder = AbsolutePath2UnityPath(path);
+            }
+            GUILayout.EndHorizontal();
+            
+            if (GUILayout.Button("Apply"))
+            {
+                ConvertToVersionHandler(pluginName, rootFolder, version);
+            }
+        }
+        
         public static void ConvertToVersionHandler(string pluginName, string rootFolder, string version)
         {
             // delete old manifest file
@@ -72,12 +96,14 @@ namespace TapTap.Internal.Editor
 
         private static string UnityPath2AbsolutePath(string unityPath)
         {
+            if (string.IsNullOrEmpty(unityPath)) return "";
             // convert relative path to absolute path
             return Application.dataPath.Replace("Assets", unityPath);
         }
         
         private static string AbsolutePath2UnityPath(string absolutePath)
         {
+            if (string.IsNullOrEmpty(absolutePath)) return "";
             // convert absolute path to relative path
             return absolutePath.Replace(Application.dataPath, "Assets");
         }
