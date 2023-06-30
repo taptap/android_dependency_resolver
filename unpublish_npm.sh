@@ -21,6 +21,6 @@ cd "$npm_source_dic_root"
 
 echo "ready to unpublish com.tapsdk.androiddependencyresolver NPM, Path: $npm_source_dic_root"
 
-unpublishNPM $1
+unpublishNPM $1 --force
 
 echo "npm unpublish com.tapsdk.androiddependencyresolver  finish version: " $1
