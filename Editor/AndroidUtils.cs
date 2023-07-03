@@ -292,7 +292,7 @@ namespace TapTap.AndroidDependencyResolver.Editor
             if (!haveEDM4U)
             {
                 // 定义要添加的依赖项字符串
-                string androidResolverDependencies = string.Format("**DEPS**\n\t{0}\n\t{1}", DependenciesStartLine, DependenciesEndLine);
+                string androidResolverDependencies = string.Format("\t{0}\n\t{1}\n**DEPS**", DependenciesStartLine, DependenciesEndLine);
 
                 // 使用正则表达式替换原始文本中的 **DEPS** 标记
                 string newContent = Regex.Replace(clearContents, @"\*\*DEPS\*\*", androidResolverDependencies);

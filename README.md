@@ -13,11 +13,11 @@ Unity Android Dependency Resolver 是通过字符串匹配来修改 Unity 的 [A
 ### 1. 安装
 
 用 upm 导入需要在 Unity 工程的 Packages/manifest.json 文件中添加
-"com.tapsdk.androiddependencyresolver": "https://github.com/luckisnow/android_dependency_resolver.git#1.1.0"
+"com.tapsdk.androiddependencyresolver": "https://github.com/luckisnow/android_dependency_resolver.git#1.1.1"
 
 **推荐**用 npm 导入需要在 Unity 工程的 Packages/manifest.json 文件中添加
 
-"com.tapsdk.androiddependencyresolver": "1.1.0"
+"com.tapsdk.androiddependencyresolver": "1.1.1"
 
 还需要注册对应的 NPM 路径
 
