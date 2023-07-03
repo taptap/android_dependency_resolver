@@ -26,8 +26,8 @@ publishUPM() {
     
 
      if [ $publish2Release == true ]; then
-         echo "start push $1 to git@github.com:taptap/AndroidDependencyResolver.git"  
-                  git remote add "$1" https://$token@github.com/taptap/AndroidDependencyResolver.git
+         echo "start push $1 to git@github.com:taptap/android_dependency_resolver.git"  
+         git remote add "$1" https://$token@github.com/taptap/android_dependency_resolver.git
      else
          echo "start push $1 to git@github.com:luckisnow/AndroidDependencyResolver.git"  
          git remote add "$1" https://$token@github.com/luckisnow/AndroidDependencyResolver.git
