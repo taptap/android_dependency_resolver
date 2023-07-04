@@ -2,7 +2,7 @@ fileFormatVersion: 2
 guid: 15292d71113be4658aefd3b7aa8a99af
 labels:
 - gvh
-- gvh_version-1.1.2
+- gvh_version-1.1.3
 - gvhp-exportPath-TapTap/AndroidDependencyResolver/package.json
 TextScriptImporter:
   externalObjects: {}

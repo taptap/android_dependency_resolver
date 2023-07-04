@@ -180,6 +180,8 @@ namespace TapTap.AndroidDependencyResolver.Editor
             }
             
             ParseDependencies(sb.ToString(), filePath);
+            
+            AssetDatabase.ImportAsset(DEPENDENCIES_FILE_NAME);
         }
         
         // 将输入的依赖项字符串解析为 XML 文档
