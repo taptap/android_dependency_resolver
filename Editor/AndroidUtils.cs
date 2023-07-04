@@ -725,7 +725,7 @@ namespace TapTap.AndroidDependencyResolver.Editor
             Resolve(true);
         }
         
-        internal static void Resolve(bool forceResolve)
+        public static void Resolve(bool forceResolve)
         {
             var providers = Load();
             GenerateDependencies(providers);
