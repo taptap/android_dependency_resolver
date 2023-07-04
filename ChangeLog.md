@@ -1,5 +1,27 @@
-## 1.0.0 (2023 年 01 月 xx 日)
+# ChangeLog
 
+## 1.1.3 (2023 年 07 月 04 日)
+### Bugfix
+
+- 修复不能正确读取新生成的 TapTap/Gen/Editor/TapTapADRDependencies.xml 文件的问题。
+  
+## 1.1.2 (2023 年 07 月 03 日)
+### Improvements
+
+- 新增公共接口：TapTap.AndroidDependencyResolver.Editor.AndroidUitls.Resolve，用来更新 Unity Android 打包自定义配置
+
+## 1.1.1 (2023 年 07 月 03 日)
+### Improvements
+
+- 优化 Android Dependencies 插入位置：从 \*\*DEPS\*\* 后一行，变为 \*\*DEPS\*\* 前一行
+  
+## 1.1.0 (2023 年 06 月 30 日)
+### New Feature
+
+- 优化 Android Dependecies 收集逻辑：收集所有 TapAndroidProvider 中 DEPS 内容以及所有 Editor 文件夹下的 XXXDependencies.xml 文件，然后根据这些内容生成 TapTap/Gen/Editor/TapTapADRDependencies.xml 文件，利用这个文件去修改 mainTemplate.gradle
+- 新增菜单栏：TapTap/AndroidDependencyResolver/Resolve / TapTap/AndroidDependencyResolver/Force Resolve 用来提前更新 Unity Android 打包自定义配置
+  
+## 1.0.0 (2023 年 01 月)
 #### Feature
 - 支持 Unity Android 打包自定义配置 Gradle 依赖
 
