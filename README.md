@@ -25,14 +25,14 @@ Unity Android Dependency Resolver 是通过字符串匹配来修改 Unity 的 [A
 "scopedRegistries":
 [  
   {    
-  "name": "TapSDK",    
-  "url": "https://nexus.tapsvc.com/repository/npm-registry/",    
-  "scopes":
-  [      
-  "com.tapsdk",      
-  "com.taptap",      
-  "com.leancloud"    
-  ]  
+    "name": "TapSDK",    
+    "url": "https://nexus.tapsvc.com/repository/npm-registry/",    
+    "scopes":
+    [      
+      "com.tapsdk",      
+      "com.taptap",      
+      "com.leancloud"    
+    ]  
   }
 ]
 ```
