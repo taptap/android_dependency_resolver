@@ -1,5 +1,10 @@
 # ChangeLog
 
+## 1.1.4 (2023 年 07 月 05 日)
+### Bugfix
+
+- 修复当 Android Dependencies 为空时,不能正确清楚之前添加的 Android Dependencies 中的内容.
+
 ## 1.1.3 (2023 年 07 月 04 日)
 ### Bugfix
 
