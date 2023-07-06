@@ -1,5 +1,5 @@
 # ChangeLog
-## 1.1.6 (2023 年 07 月 06 日)
+## 1.1.5 (2023 年 07 月 06 日)
 ### Improvements
 
 - 新增 localtionType = 4: 首行插入功能
