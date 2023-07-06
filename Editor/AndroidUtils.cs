@@ -357,22 +357,30 @@ namespace TapTap.AndroidDependencyResolver.Editor
             // 寻找修改位置
             if (IsDepsContext(gradleContext) && !haveEDM4U)
             {
-                match = Regex.Match(contents, $"{DependenciesStartLine}");
+                match = Regex.Match(contents, $"{DependenciesStartLine}", RegexOptions.Multiline);
             }
             else if (gradleContext.locationType == AndroidGradleLocationType.Builtin)
             {
-                match = Regex.Match(contents, $"\\*\\*{gradleContext.locationParam}\\*\\*");
+                match = Regex.Match(contents, $"\\*\\*{gradleContext.locationParam}\\*\\*", RegexOptions.Multiline);
             }
             else if (gradleContext.locationType == AndroidGradleLocationType.Custom)
             {
-                match = Regex.Match(contents, gradleContext.locationParam);
+                match = Regex.Match(contents, gradleContext.locationParam, RegexOptions.Multiline);
             }
             else if (gradleContext.locationType == AndroidGradleLocationType.End)
             {
             }
+            else if (gradleContext.locationType == AndroidGradleLocationType.Start)
+            {
+                match = Regex.Match(contents, @"^(?!\s*//)", RegexOptions.Multiline);
+            }
 
             var index = 0;
-            if (gradleContext.locationType != AndroidGradleLocationType.End)
+            if (gradleContext.locationType == AndroidGradleLocationType.Start)
+            {
+                index = match.Index;
+            }
+            else if (gradleContext.locationType != AndroidGradleLocationType.End)
             {
                 if (match == null || match.Success == false)
                 {
@@ -381,7 +389,9 @@ namespace TapTap.AndroidDependencyResolver.Editor
                     return;
                 }
                 
-                if (gradleContext.processType == AndroidGradleProcessType.Insert)
+                if (gradleContext.processType == AndroidGradleProcessType.InsertBefore)
+                    index = match.Index;
+                else if (gradleContext.processType == AndroidGradleProcessType.Insert)
                     index = match.Index + match.Length;
                 else if (gradleContext.processType == AndroidGradleProcessType.Replace)
                     index = match.Index;
@@ -419,6 +429,15 @@ namespace TapTap.AndroidDependencyResolver.Editor
                     eachContext = eachContext.Replace("'", "\"");
                 }
                 newContents = contents.Insert(index, string.Format("\n{0}{1}", eachContext, (apeendNewline?"\n":"")));
+            }
+            else if (gradleContext.processType == AndroidGradleProcessType.InsertBefore)
+            {
+                // DEPS 中 ' 和 " 是相同的含义,所以需要特殊处理
+                if (gradleContext.locationParam == "DEPS")
+                {
+                    eachContext = eachContext.Replace("'", "\"");
+                }
+                newContents = contents.Insert(index, string.Format("{0}{1}", eachContext, (apeendNewline?"\n":"")));
             }
             else if (gradleContext.processType == AndroidGradleProcessType.Replace)
             {
@@ -518,10 +537,10 @@ namespace TapTap.AndroidDependencyResolver.Editor
                 "\\s*(\\d{1,3}\\.\\s*){1,3}\\d{1,3}\\s*";
             var packageAllPattern = headerPattern + "['\"]" + packageNamePattern + ":" + versionNumberPattern + "['\"]";
 
-            var importMatch = Regex.Match(eachContext, packageAllPattern);
+            var importMatch = Regex.Match(eachContext, packageAllPattern, RegexOptions.Multiline);
             if (string.IsNullOrEmpty(importMatch.Value)) return true;
 
-            var importPkgNameMatch = Regex.Match(importMatch.Value, packageNamePattern);
+            var importPkgNameMatch = Regex.Match(importMatch.Value, packageNamePattern, RegexOptions.Multiline);
             if (string.IsNullOrEmpty(importPkgNameMatch.Value)) return true;
             
             try
@@ -531,7 +550,7 @@ namespace TapTap.AndroidDependencyResolver.Editor
                 var builtinMatches = Regex.Matches(contents, pattern, RegexOptions.Multiline, TimeSpan.FromSeconds(2));
                 if (builtinMatches.Count == 0) return true;
 
-                var importVersionMatch = Regex.Match(importMatch.Value, versionNumberPattern);
+                var importVersionMatch = Regex.Match(importMatch.Value, versionNumberPattern, RegexOptions.Multiline);
                 var importVersion = new Version(importVersionMatch.Value);
 
                 foreach (Match builtinMatch in builtinMatches)
@@ -543,7 +562,7 @@ namespace TapTap.AndroidDependencyResolver.Editor
                     if (commentIdx >= 0) continue;
                     
                     // 版本相同不添加
-                    var builtinVersionMatch = Regex.Match(builtinMatch.Value, versionNumberPattern);
+                    var builtinVersionMatch = Regex.Match(builtinMatch.Value, versionNumberPattern, RegexOptions.Multiline);
                     if (builtinVersionMatch.Success == false) continue;
                     var builtinVersion = new Version(builtinVersionMatch.Value);
                     if (importVersion == builtinVersion) return false;

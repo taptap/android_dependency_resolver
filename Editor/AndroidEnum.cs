@@ -17,12 +17,14 @@ namespace TapTap.AndroidDependencyResolver.Editor
         Builtin = 1,
         Custom = 2,
         End = 3,
+        Start = 4,
     }
 
     public enum AndroidGradleProcessType
     {
         Insert = 1,
         Replace = 2,
+        InsertBefore = 3,
     }
     
     public enum UnityVersionCompatibleType

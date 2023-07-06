@@ -1,4 +1,9 @@
 # ChangeLog
+## 1.1.6 (2023 年 07 月 06 日)
+### Improvements
+
+- 新增 localtionType = 4: 首行插入功能
+- 新增 processType = 3: 前向插入,之前常用的插入为 processType = 1,会在匹配到内容后,在后面新插入相应的内容,而 processType = 3,则会在匹配到内容后,在前面插入相应的内容
 
 ## 1.1.4 (2023 年 07 月 05 日)
 ### Bugfix
