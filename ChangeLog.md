@@ -1,4 +1,9 @@
 # ChangeLog
+## 1.1.6 (2023 年 07 月 06 日)
+### Bugfix
+
+- 修复导出 Android 工程时相关 Android 依赖不能被正确添加的问题
+  
 ## 1.1.5 (2023 年 07 月 06 日)
 ### Improvements
 

@@ -8,4 +8,4 @@ Assets/TapTap/AndroidDependencyResolver/Editor/AndroidUtils.cs
 Assets/TapTap/AndroidDependencyResolver/Editor/TapTap.AndroidDependencyResolver.Editor.asmdef
 Assets/TapTap/AndroidDependencyResolver/package.json
 Assets/TapTap/AndroidDependencyResolver/README.md
-Assets/TapTap/AndroidDependencyResolver/TapTap_Android_Dependency_Resolver_1.1.5.txt
+Assets/TapTap/AndroidDependencyResolver/TapTap_Android_Dependency_Resolver_1.1.6.txt

@@ -36,7 +36,7 @@ namespace TapTap.AndroidDependencyResolver.Editor
                 gardleTemplateToggleRecord.Add((CustomTemplateType)i, haveCustomGradleTemplate);
             }
 
-            AndroidUtils.Resolve(false);
+            AndroidUtils.Resolve(true);
         }
     }
     

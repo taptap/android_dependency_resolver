@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: 0a885ff5d175a4731948177a2dd2832b
+guid: 1dc7cd9499b534aa39967995e5ac6105
 labels:
 - gvh
+- gvh_manifest
 - gvh_version-1.1.6
-- gvhp-exportPath-TapTap/AndroidDependencyResolver/ChangeLog.md
+- gvhp-exportPath-TapTap/AndroidDependencyResolver/TapTap_Android_Dependency_Resolver_1.1.6.txt
 TextScriptImporter:
   externalObjects: {}
   userData: 
