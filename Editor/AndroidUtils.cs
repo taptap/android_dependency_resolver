@@ -505,7 +505,8 @@ namespace TapTap.AndroidDependencyResolver.Editor
                     }
                     else
                     {
-                        var temp = Regex.Match(contents, string.Format("^{0}", eachContext), RegexOptions.Multiline, TimeSpan.FromSeconds(2));
+                        string escapedPattern = Regex.Escape(eachContext);
+                        var temp = Regex.Match(contents, string.Format("^{0}", escapedPattern), RegexOptions.Multiline, TimeSpan.FromSeconds(2));
                         hadWrote = temp.Success;
                     }
                 }
