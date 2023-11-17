@@ -332,8 +332,11 @@ namespace TapTap.AndroidDependencyResolver.Editor
         }
 
         // 因为 EDM4U 和 AGP 会同时修改 gradleTemplate.properties,并且 EMD4U 不会检查已经存在的内容，所以去掉重复添加的部分
-        private static void CheckGradlePropertiesTemplate(bool haveEDM4U)
-        {
+        private static void CheckGradlePropertiesTemplate(bool haveEDM4U) {
+            if (!haveEDM4U) return;
+            if (!HaveGradleTemplateToggled(CustomTemplateType.GradleProperties)) {
+                return;
+            }
             var fileInfo = ToggleCustomTemplateFile(CustomTemplateType.GradleProperties, true);
             if (fileInfo == null) return;
             var contents = File.ReadAllText(fileInfo.FullName);
@@ -610,6 +613,18 @@ namespace TapTap.AndroidDependencyResolver.Editor
             GetTemplatePath(templateType, out string internalPath, out string customPath);
 
             return ToggleAsset(internalPath, customPath, create);
+        }
+        
+        private static bool HaveGradleTemplateToggled(CustomTemplateType templateType)
+        {
+            if (string.IsNullOrEmpty(_AndroidEditorModulePath))
+            {
+                Init();
+            }
+
+            GetTemplatePath(templateType, out string internalPath, out string customPath);
+
+            return File.Exists(customPath);
         }
         
         private static FileInfo ToggleAsset(string originalFile, string assetFile, bool create)

@@ -1,4 +1,9 @@
 # ChangeLog
+## 1.2.2 (2023 年 10 月 26 日)
+### Bugfix
+
+- 修复无论是否修改 Custom Gradle Properties Template 都会激活的问题,影响范围: 1.2.0 ~ 1.2.1
+
 ## 1.2.1 (2023 年 10 月 26 日)
 ### Bugfix
 
