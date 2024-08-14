@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Regex = System.Text.RegularExpressions.Regex;
-using LC.Newtonsoft.Json;
+using Newtonsoft.Json;
 
 namespace TapTap.AndroidDependencyResolver.Editor
 {

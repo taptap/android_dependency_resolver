@@ -1,6 +1,6 @@
 #if UNITY_EDITOR && UNITY_ANDROID
 using System.Collections.Generic;
-using LC.Newtonsoft.Json;
+using Newtonsoft.Json;
 
 namespace TapTap.AndroidDependencyResolver.Editor
 {
