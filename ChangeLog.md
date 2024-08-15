@@ -1,4 +1,10 @@
 # ChangeLog
+## 1.2.3 (2024 年 08 月 15 日)
+### Improvement
+
+- 替换 Json 库为 NewtonSoft
+
+
 ## 1.2.2 (2023 年 10 月 26 日)
 ### Bugfix
 
